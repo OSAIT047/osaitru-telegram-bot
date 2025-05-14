@@ -36,79 +36,79 @@ CATEGORIES = [
         "emoji": "💻",
         "name": "Ноутбуки и планшеты",
         "description": "Ноутбуки, планшеты, 2-в-1 устройства от ведущих брендов",
-        "url": "https://osait.ru/category/noutbuki-i-planshety/  "
+        "url": "https://osait.ru/category/noutbuki-i-planshety/ "
     },
     {
         "emoji": "🖥️",
         "name": "Компьютеры",
         "description": "Системные блоки, моноблоки и серверные решения",
-        "url": "https://osait.ru/category/kompyutery/  "
+        "url": "https://osait.ru/category/kompyutery/ "
     },
     {
         "emoji": "📱",
         "name": "Мобильная связь",
         "description": "Смартфоны, смарт-часы и аксессуары",
-        "url": "https://osait.ru/category/mobilnaya-svyaz/  "
+        "url": "https://osait.ru/category/mobilnaya-svyaz/ "
     },
     {
         "emoji": "📺",
         "name": "Телевизоры и аксессуары",
         "description": "LED/Smart TV, крепления и медиаплееры",
-        "url": "https://osait.ru/category/televizory-i-aksessuary/  "
+        "url": "https://osait.ru/category/televizory-i-aksessuary/ "
     },
     {
         "emoji": "🖱️",
         "name": "Комплектующие для компьютеров",
         "description": "Процессоры, видеокарты, SSD и охлаждение",
-        "url": "https://osait.ru/category/komplektuyushchie-dlya-kompyuterov/  "
+        "url": "https://osait.ru/category/komplektuyushchie-dlya-kompyuterov/ "
     },
     {
         "emoji": "🎮",
         "name": "Оборудование для геймеров",
         "description": "Игровые консоли, геймпады и гарнитуры",
-        "url": "https://osait.ru/category/oborudovanie-dlya-geymerov/  "
+        "url": "https://osait.ru/category/oborudovanie-dlya-geymerov/ "
     },
     {
         "emoji": "🖨️",
         "name": "Периферия и аксессуары",
         "description": "Клавиатуры, мыши, колонки и веб-камеры",
-        "url": "https://osait.ru/category/periferiya-i-aksessuary/  "
+        "url": "https://osait.ru/category/periferiya-i-aksessuary/ "
     },
     {
         "emoji": "🏠",
         "name": "Бытовая техника для дома",
         "description": "Холодильники, стиральные машины и климатическая техника",
-        "url": "https://osait.ru/category/bytovaya-tekhnika-dlya-doma/  "
+        "url": "https://osait.ru/category/bytovaya-tekhnika-dlya-doma/ "
     },
     {
         "emoji": "🎧",
         "name": "Аудио-видео техника",
         "description": "Hi-Fi системы, наушники и проекторы",
-        "url": "https://osait.ru/category/audio-video-tekhnika/  "
+        "url": "https://osait.ru/category/audio-video-tekhnika/ "
     },
     {
         "emoji": "⚡",
         "name": "Портативная электроника",
         "description": "Powerbank'и, портативные колонки и электронные книги",
-        "url": "https://osait.ru/category/portativnaya-elektronika/  "
+        "url": "https://osait.ru/category/portativnaya-elektronika/ "
     },
     {
         "emoji": "🗄️",
         "name": "Серверы и СХД",
         "description": "Серверные шасси, NAS и системы хранения данных",
-        "url": "https://osait.ru/category/servery-i-skhd/  "
+        "url": "https://osait.ru/category/servery-i-skhd/ "
     },
     {
         "emoji": "🌐",
         "name": "Сетевое оборудование",
         "description": "Роутеры, маршрутизаторы и сетевые карты",
-        "url": "https://osait.ru/category/setevoe-oborudovanie/  "
+        "url": "https://osait.ru/category/setevoe-oborudovanie/ "
     },
     {
         "emoji": "💿",
         "name": "Программное обеспечение",
         "description": "Операционные системы, антивирусы и профессиональный софт",
-        "url": "https://osait.ru/category/programmnoe-obespechenie/  "
+        "url": "https://osait.ru/category/programmnoe-obespechenie/ "
     }
 ]
 
@@ -197,9 +197,9 @@ async def contacts(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     await query.answer()
     keyboard = [
-        [InlineKeyboardButton("WhatsApp", url="https://wa.me/79823143855  ")],
-        [InlineKeyboardButton("Telegram", url="https://t.me/osait_support  ")],
-        [InlineKeyboardButton("🗺️ Google Maps", url="https://goo.gl/maps/example  ")],
+        [InlineKeyboardButton("WhatsApp", url="https://wa.me/79823143855 ")],
+        [InlineKeyboardButton("Telegram", url="https://t.me/osait_support ")],
+        [InlineKeyboardButton("🗺️ Google Maps", url="https://goo.gl/maps/example ")],
         [InlineKeyboardButton("◀️ Назад в меню", callback_data="back_to_main")]
     ]
     await query.message.edit_text(
@@ -214,8 +214,8 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     query = update.callback_query
     await query.answer()
     keyboard = [
-        [InlineKeyboardButton("FAQ", url="https://osait.ru/faq  ")],
-        [InlineKeyboardButton("Чат-поддержка", url="https://t.me/osait_support  ")],
+        [InlineKeyboardButton("FAQ", url="https://osait.ru/faq ")],
+        [InlineKeyboardButton("Чат-поддержка", url="https://t.me/osait_support ")],
         [InlineKeyboardButton("◀️ Назад в меню", callback_data="back_to_main")]
     ]
     await query.message.edit_text(

@@ -17,16 +17,18 @@ try:
 except ImportError:
     __version_info__ = (0, 0, 0, 0, 0)
 if __version_info__ < (20, 0, 0, "alpha", 1):
-    raise RuntimeError(f"Требуется python-telegram-bot 20.0+. Текущая версия: {TG_VER}")
+    raise RuntimeError(
+        f"Требуется python-telegram-bot 20.0+. Текущая версия: {TG_VER}"
+    )
 
 # Получение токена из переменной окружения
-TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 if not TELEGRAM_TOKEN:
     raise ValueError("Telegram token не найден! Установите переменную TELEGRAM_TOKEN")
 
 # Настройка логирования
 logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO
 )
 
@@ -119,9 +121,11 @@ MAIN_KEYBOARD = InlineKeyboardMarkup([
     [InlineKeyboardButton("📞 Контакты", callback_data="contacts")],
     [InlineKeyboardButton("❓ Помощь", callback_data="help")]
 ])
+
 BACK_TO_MAIN_KEYBOARD = InlineKeyboardMarkup([
     [InlineKeyboardButton("◀️ Назад в меню", callback_data="back_to_main")]
 ])
+
 CATALOG_BACK_KEYBOARD = InlineKeyboardMarkup([
     [InlineKeyboardButton("◀️ Назад к категориям", callback_data="catalog")]
 ])
@@ -131,22 +135,23 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if update.callback_query:
         await update.callback_query.answer()
         await update.callback_query.message.edit_text(
-            """Привет! 🤖 Я помощник OSAIT
-Чем могу помочь?
-👉 Выберите категорию
-👉 Узнайте о нас
-👉 Свяжитесь с поддержкой""",
+            "Привет! 🤖 Я помощник OSAIT\n"
+            "Чем могу помочь?\n"
+            "👉 Выберите категорию\n"
+            "👉 Узнайте о нас\n"
+            "👉 Свяжитесь с поддержкой",
             reply_markup=MAIN_KEYBOARD
         )
     else:
         await update.message.reply_text(
-            """Привет! 🤖 Я помощник OSAIT
-Чем могу помочь?
-👉 Выберите категорию
-👉 Узнайте о нас
-👉 Свяжитесь с поддержкой""",
+            "Привет! 🤖 Я помощник OSAIT\n"
+            "Чем могу помочь?\n"
+            "👉 Выберите категорию\n"
+            "👉 Узнайте о нас\n"
+            "👉 Свяжитесь с поддержкой",
             reply_markup=MAIN_KEYBOARD
         )
+
 
 async def catalog(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
@@ -165,33 +170,36 @@ async def catalog(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
 
+
 async def show_category(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     await query.answer()
     category_idx = int(query.data.split("_")[1])
     category = CATEGORIES[category_idx]
     keyboard = [
-        [InlineKeyboardButton("🌐 Перейти на сайт", url=category['url'])],
+        [InlineKeyboardButton("🌐 Перейти на сайт", url=category["url"])],
         [InlineKeyboardButton("◀️ Назад к категориям", callback_data="catalog")]
     ]
     await query.message.edit_text(
-        f"{category['emoji']} *{category['name']}*\n"
+        f"{category['emoji']} *{category['name']}*\n\n"
         f"{category['description']}",
         reply_markup=InlineKeyboardMarkup(keyboard),
         parse_mode="Markdown"
     )
 
+
 async def about(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     await query.answer()
     await query.message.edit_text(
-        """О компании OSAIT:
-Мы - ведущий поставщик цифровой техники в России
-Основаны в 2020 году
-Более 100 тыс. довольных клиентов
-Собственный сервисный центр""",
+        "О компании OSAIT:\n"
+        "Мы — ведущий поставщик цифровой техники в России\n"
+        "Основаны в 2020 году\n"
+        "Более 100 тыс. довольных клиентов\n"
+        "Собственный сервисный центр",
         reply_markup=BACK_TO_MAIN_KEYBOARD
     )
+
 
 async def contacts(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
@@ -203,12 +211,13 @@ async def contacts(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         [InlineKeyboardButton("◀️ Назад в меню", callback_data="back_to_main")]
     ]
     await query.message.edit_text(
-        """Контакты OSAIT:
-📧 ooo_osa@internet.ru
-📞 +7 (982) 314-38-55
-📍 Москва, ул. Примерная, 1""",
+        "Контакты OSAIT:\n"
+        "📧 ooo_osa@internet.ru\n"
+        "📞 +7 (982) 314-38-55\n"
+        "📍 Москва, ул. Примерная, 1",
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
+
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
@@ -219,51 +228,57 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         [InlineKeyboardButton("◀️ Назад в меню", callback_data="back_to_main")]
     ]
     await query.message.edit_text(
-        """Помощь:
-/start - Главное меню
-/faq - Частые вопросы
-Поддержка: 24/7""",
+        "Помощь:\n"
+        "/start — Главное меню\n"
+        "/faq — Частые вопросы\n"
+        "Поддержка: 24/7",
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
+
 
 async def back_to_main(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query
     await query.answer()
     await start(update, context)
 
+
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     text = update.message.text.lower()
     if any(word in text for word in ["привет", "здравствуй", "добрый день"]):
         await update.message.reply_text(
-            """Привет! 😊 Рад вас видеть!
-Чем могу помочь сегодня?""",
+            "Привет! 😊 Рад вас видеть!\n"
+            "Чем могу помочь сегодня?",
             reply_markup=MAIN_KEYBOARD
         )
     elif any(word in text for word in ["пока", "до свидания", "увидимся"]):
         await update.message.reply_text(
-            """До встречи! 🌟
-Всегда рады помочь - возвращайтесь!"""
+            "До встречи! 🌟\n"
+            "Всегда рады помочь — возвращайтесь!"
         )
     else:
         await update.message.reply_text(
-            """К сожалению, я не понимаю ваш запрос 🤔
-Используйте кнопки меню или напишите /start""",
+            "К сожалению, я не понимаю ваш запрос 🤔\n"
+            "Используйте кнопки меню или напишите /start",
             reply_markup=MAIN_KEYBOARD
         )
+
 
 async def error_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     logging.error(f"Произошла ошибка: {context.error}")
     if update:
         try:
             await update.message.reply_text(
-                """Произошла непредвиденная ошибка 😢
-Попробуйте позже или свяжитесь с поддержкой"""
+                "Произошла непредвиденная ошибка 😢\n"
+                "Попробуйте позже или свяжитесь с поддержкой"
             )
         except Exception as e:
             logging.error(f"Ошибка при отправке сообщения об ошибке: {e}")
 
+
 def main() -> None:
-    application = Application.builder().token(TELEGRAM_TOKEN).build()
+    application = Application.builder().token(TelegramBot).build()
+
+    # Команды и обработчики
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CallbackQueryHandler(catalog, pattern="^catalog$"))
     application.add_handler(CallbackQueryHandler(about, pattern="^about$"))
@@ -273,7 +288,10 @@ def main() -> None:
     application.add_handler(CallbackQueryHandler(back_to_main, pattern="^back_to_main$"))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     application.add_error_handler(error_handler)
+
+    # Запуск бота
     application.run_polling()
+
 
 if __name__ == "__main__":
     main()
